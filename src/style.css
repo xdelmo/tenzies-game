@@ -1,0 +1,175 @@
+/* ---------------------- */
+/* Fonts                  */
+/* ---------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+/* ---------------------- */
+/* Custom properties      */
+/* ---------------------- */
+
+:root {
+  --clr-background: #0b2434;
+  --clr-accent: #59e391;
+
+  --clr-light: #f5f5f5;
+  --clr-lighter: #ffffff;
+
+  --crl-text: #4a4e74;
+  --crl-text-darker: #2b283a;
+
+  --clr-button: #5035ff;
+
+  --ff-main: "Roboto", sans-serif;
+  --ff-dice: "Karla", sans-serif;
+}
+
+/* ---------------------- */
+/* Reset                  */
+/* ---------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------- */
+/* Typography             */
+/* ---------------------- */
+
+html {
+  font-family: var(--ff-main);
+  background-color: var(--clr-background);
+}
+
+main {
+  background-color: var(--clr-light);
+  min-height: calc(60vh - 4em);
+  padding: 2em;
+  margin: 2em;
+  width: min(80vw, 500px);
+  border-radius: 1em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ---------------------- */
+/* Components             */
+/* ---------------------- */
+
+/* APP */
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.instructions {
+  text-align: center;
+}
+
+/* DICE */
+
+.dice-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 1em;
+  margin-block: 1em;
+}
+
+.die-face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 2.5em;
+  height: 2.5em;
+  padding: 1.2em;
+  background-color: var(--clr-lighter);
+  color: var(--crl-text-darker);
+  border-radius: 5px;
+  /* border: 1px solid var(--clr-background); */
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.die-face.isHeld {
+  background-color: var(--clr-accent);
+}
+
+.die-num {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-family: var(--ff-dice);
+}
+
+/* Button */
+
+.roll-dice {
+  border-radius: 10px;
+  padding: 1em 3em;
+  font-family: var(--ff-main);
+  /* margin-block: 3em 2em; */
+  background-color: var(--clr-button);
+  color: var(--clr-lighter);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  border: none;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.roll-dice:focus-visible {
+  transform: scale(0.95);
+}
+
+.roll-dice:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+/* FOOTER */
+
+.footer {
+  padding: 1.25em 2.25em;
+  justify-content: center;
+  text-align: center;
+
+  color: var(--clr-lighter);
+}
+
+.footer a {
+  color: var(--clr-accent);
+}

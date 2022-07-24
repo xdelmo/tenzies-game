@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Tenzies Game",
+  "name": "Tenzies Game created using React",
   "icons": [
     {
       "src": "favicon.ico",
