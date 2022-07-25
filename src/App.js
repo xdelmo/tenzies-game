@@ -41,7 +41,7 @@ export default function App() {
 
   function generateNewDie() {
     return {
-      value: 1,
+      value: getRandomInt(),
       isHeld: false,
       // Use nanoid package to generate a unique key for every object
       id: nanoid(),
