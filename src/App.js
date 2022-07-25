@@ -95,7 +95,7 @@ export default function App() {
   }
 
   return (
-    <div className="app-container">
+    <div className="app-container shadow-shorter">
       {/* Render Confetti component if `tenzies` is true*/}
       {tenzies && <ReactConfetti />}
       <main>
@@ -104,6 +104,7 @@ export default function App() {
           Roll until all dice are the same.
           <br /> Click each die to freeze it at its current value between rolls.
         </p>
+        {tenzies && <p className="winner gradient-text"> YOU WON!</p>}
         <div className="dice-container">{diceElements}</div>
         <button className="roll-dice" onClick={rollDice}>
           {tenzies ? "New game" : "Roll"}

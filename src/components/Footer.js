@@ -10,7 +10,7 @@ export default function Footer() {
         </span>{" "}
         by{" "}
         <a
-          className="footer--link"
+          className="footer--link underline-animation"
           href="https://emanueledelmonte.it"
           target="_blank"
           rel="noopener noreferrer"

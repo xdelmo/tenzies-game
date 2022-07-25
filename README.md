@@ -47,8 +47,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Continued development
 
 I'd like to:
-~~ - Put real dots on the dice~~
 
+- ~~Put real dots on the dice~~
 - Track the number of rolls
 - Track the time it took to win
 - Save user's best time to localStorage
@@ -62,6 +62,7 @@ I'd like to:
 - [BobbyHadz](https://bobbyhadz.com/blog/javascript-check-if-all-values-in-array-equal) - Array.prototype.every()
 - [Confetti @Github](https://github.com/alampros/react-confetti)
 - [FreeCodeCamp](https://www.freecodecamp.org/news/react-background-image-tutorial-how-to-set-backgroundimage-with-inline-css-style/) - How to Set a Background Image in React Using the Relative URL Method
+- [Fossheim](https://fossheim.io/writing/posts/css-text-gradient) - Text Gradient
 
 ## Author
 

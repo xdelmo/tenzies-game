@@ -5,22 +5,22 @@ export default function Die(props) {
   let dieFace = "";
   switch (props.value) {
     case 1:
-      dieFace = "/img/dice1.png";
+      dieFace = "/img/dieFace1.png";
       break;
     case 2:
-      dieFace = "/img/dice2.png";
+      dieFace = "/img/dieFace2.png";
       break;
     case 3:
-      dieFace = "/img/dice3.png";
+      dieFace = "/img/dieFace3.png";
       break;
     case 4:
-      dieFace = "/img/dice4.png";
+      dieFace = "/img/dieFace4.png";
       break;
     case 5:
-      dieFace = "/img/dice5.png";
+      dieFace = "/img/dieFace5.png";
       break;
     case 6:
-      dieFace = "/img/dice6.png";
+      dieFace = "/img/dieFace6.png";
       break;
     default:
       break;
