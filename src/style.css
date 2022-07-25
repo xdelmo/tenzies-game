@@ -61,7 +61,9 @@ html {
   font-family: var(--ff-main);
   background-color: var(--clr-background);
 }
-
+p {
+  color: var(--crl-text);
+}
 main {
   background-color: var(--clr-light);
   min-height: 60vh;
@@ -92,6 +94,7 @@ main {
 .title {
   font-size: 3em;
   text-transform: uppercase;
+  color: var(--crl-text-darker);
 }
 
 .instructions {
@@ -132,6 +135,7 @@ main {
   /* Use the text as a mask for the background. */
   /* This will show the gradient as a text color rather than element bg. */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 
   /* Animate the text when loading the element. */
@@ -243,6 +247,31 @@ main {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
+/* Stats */
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  margin-top: 1em;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.rolls-best {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+  color: var(--crl-text-darker);
+}
+
+.rolls-best > p:last-child {
+  color: var(--clr-accent);
+  margin-block: 0.5em;
+}
+
 /* FOOTER */
 
 .footer {
@@ -258,7 +287,7 @@ main {
 }
 
 /* ---------------------- */
-/* Aestethic Classes     */
+/* Auxiliary Classes      */
 /* ---------------------- */
 
 /* Underline animation classes */
@@ -303,4 +332,18 @@ main {
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.11),
     0 2px 2px rgba(255, 255, 255, 0.11), 0 4px 4px rgba(255, 255, 255, 0.11),
     0 6px 8px rgba(255, 255, 255, 0.11), 0 8px 16px rgba(255, 255, 255, 0.11);
+}
+
+/* ---------------------- */
+/* Media queries          */
+/* ---------------------- */
+
+@media screen and (max-width: 375px) {
+  .dice-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 1em;
+    margin-block: 1em;
+  }
 }

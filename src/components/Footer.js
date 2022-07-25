@@ -17,7 +17,6 @@ export default function Footer() {
         >
           Emanuele Del Monte
         </a>
-        .
       </small>
     </footer>
   );

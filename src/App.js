@@ -10,6 +10,13 @@ export default function App() {
 
   // Create state to hold our game state
   const [tenzies, setTenzies] = React.useState(false);
+
+  // Create and initialize states to hold rolls stats
+  const [rolls, setRolls] = React.useState(0);
+  const [bestRolls, setBestRolls] = React.useState(
+    JSON.parse(localStorage.getItem("bestRolls")) || 0
+  );
+
   // useEffect to sync 2 different states together
   React.useEffect(() => {
     // Check all dice are held
@@ -22,6 +29,11 @@ export default function App() {
     }
   }, [dice]);
 
+  // Set bestRolls to localStorage every item bestRolls changes
+  React.useEffect(() => {
+    localStorage.setItem("bestRolls", JSON.stringify(bestRolls));
+  }, [bestRolls]);
+
   function getRandomInt() {
     // Math.ceil starts at 1 instead of 0
     return Math.ceil(Math.random() * 6);
@@ -29,12 +41,13 @@ export default function App() {
 
   function generateNewDie() {
     return {
-      value: getRandomInt(),
+      value: 1,
       isHeld: false,
       // Use nanoid package to generate a unique key for every object
       id: nanoid(),
     };
   }
+
   function allNewDice() {
     // newDice is an array of objects
     const newDice = [];
@@ -71,12 +84,6 @@ export default function App() {
     );
   });
 
-  function resetDice() {
-    // Reset the game if user has won and click on button
-    setTenzies(false);
-    setDice(allNewDice());
-  }
-
   // Clicking the button should generate a new array of numbers
   // and set the `dice` state to that new array (thus re-rendering
   // the array to the page)
@@ -89,9 +96,23 @@ export default function App() {
           return die.isHeld ? die : generateNewDie();
         })
       );
+
+      updateRolls();
     } else {
-      resetDice();
+      // Reset the game if user won and click on button
+      setTenzies(false);
+      // Check if bestRolls doesn't exist or newest rolls are better than bestRolls if so reassign the variable
+      if (!bestRolls || rolls < bestRolls) {
+        setBestRolls(rolls);
+      }
+      setDice(allNewDice());
+      setRolls(0);
     }
+  }
+
+  // Increase rolls counter updating previous state
+  function updateRolls() {
+    return setRolls((oldRolls) => oldRolls + 1);
   }
 
   return (
@@ -100,15 +121,30 @@ export default function App() {
       {tenzies && <ReactConfetti />}
       <main>
         <h1 className="title">Tenzies</h1>
-        <p className="instructions">
-          Roll until all dice are the same.
-          <br /> Click each die to freeze it at its current value between rolls.
-        </p>
+        {!tenzies && (
+          <p className="instructions">
+            Roll until all dice are the same.
+            <br /> Click each die to freeze it at its current value between
+            rolls.
+          </p>
+        )}
         {tenzies && <p className="winner gradient-text"> YOU WON!</p>}
+
+        <div className="stats-container">
+          <p>Rolls: {rolls}</p>
+        </div>
+
         <div className="dice-container">{diceElements}</div>
+
         <button className="roll-dice" onClick={rollDice}>
           {tenzies ? "New game" : "Roll"}
         </button>
+        <div className="stats-container">
+          <div className="rolls-best">
+            <p>Best rolls</p>
+            <p>{bestRolls}</p>
+          </div>
+        </div>
       </main>
       <Footer />
     </div>

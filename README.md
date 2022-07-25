@@ -49,7 +49,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 I'd like to:
 
 - ~~Put real dots on the dice~~
-- Track the number of rolls
+- ~~Track the number of rolls~~
+- ~~Save user's best rolls to localStorage~~
 - Track the time it took to win
 - Save user's best time to localStorage
 
@@ -71,3 +72,4 @@ I'd like to:
 ## Credits
 
 - Dice icons created by rizal2109 - [Flaticon](https://www.flaticon.com/free-icons/dice)
+- [Gifer](https://gifer.com/en/BTBq)
