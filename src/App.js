@@ -45,8 +45,8 @@ export default function App() {
       setBestRolls(rolls);
     }
 
-    // To get the seconds, we can divide the milliseconds by 1000
-    const timeFloored = Math.floor((time / 10) % 1000);
+    // WHY (time / 10) ?
+    const timeFloored = Math.floor(time / 10);
     // Check if bestTime doesn't exist or newest time is lower than bestTime if so reassign the variable
     if (!bestTime || timeFloored < bestTime) {
       setBestTime(timeFloored);
