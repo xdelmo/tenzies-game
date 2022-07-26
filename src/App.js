@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Die from "./components/Die";
 import { nanoid } from "nanoid";
 import ReactConfetti from "react-confetti";
+import Scoreboard from "./components/Scoreboard";
 
 export default function App() {
   // Create state to hold our array of numbers
@@ -17,6 +18,12 @@ export default function App() {
     JSON.parse(localStorage.getItem("bestRolls")) || 0
   );
 
+  // const [seconds, setSeconds] = React.useState(0);
+  // const [milliSeconds, setMilliSeconds] = React.useState(0);
+  const [bestTime, setBestTime] = React.useState(
+    JSON.parse(localStorage.getItem("bestTime")) || 0
+  );
+
   // useEffect to sync 2 different states together
   React.useEffect(() => {
     // Check all dice are held
@@ -26,13 +33,35 @@ export default function App() {
     const allSameValue = dice.every((die) => die.value === dice[0].value);
     if (allHeld && allSameValue) {
       setTenzies(true);
+      setStart(false);
+
+      setRecords();
     }
   }, [dice]);
+
+  function setRecords() {
+    // Check if bestRolls doesn't exist or newest rolls are better than bestRolls if so reassign the variable
+    if (!bestRolls || rolls < bestRolls) {
+      setBestRolls(rolls);
+    }
+
+    // To get the seconds, we can divide the milliseconds by 1000
+    const timeFloored = Math.floor((time / 10) % 1000);
+    // Check if bestTime doesn't exist or newest time is lower than bestTime if so reassign the variable
+    if (!bestTime || timeFloored < bestTime) {
+      setBestTime(timeFloored);
+    }
+  }
 
   // Set bestRolls to localStorage every item bestRolls changes
   React.useEffect(() => {
     localStorage.setItem("bestRolls", JSON.stringify(bestRolls));
   }, [bestRolls]);
+
+  // Set bestTime to localStorage every item bestTime changes
+  React.useEffect(() => {
+    localStorage.setItem("bestTime", JSON.stringify(bestTime));
+  }, [bestTime]);
 
   function getRandomInt() {
     // Math.ceil starts at 1 instead of 0
@@ -96,24 +125,42 @@ export default function App() {
           return die.isHeld ? die : generateNewDie();
         })
       );
-
       updateRolls();
     } else {
       // Reset the game if user won and click on button
-      setTenzies(false);
-      // Check if bestRolls doesn't exist or newest rolls are better than bestRolls if so reassign the variable
-      if (!bestRolls || rolls < bestRolls) {
-        setBestRolls(rolls);
-      }
-      setDice(allNewDice());
-      setRolls(0);
+      resetGame();
     }
+  }
+
+  function resetGame() {
+    setTenzies(false);
+    setDice(allNewDice());
+    setRolls(0);
+    setStart(true);
+    setTime(0);
   }
 
   // Increase rolls counter updating previous state
   function updateRolls() {
     return setRolls((oldRolls) => oldRolls + 1);
   }
+
+  // ----------------------------TIMER--------------------------------------- //
+
+  const [time, setTime] = React.useState(0);
+  const [start, setStart] = React.useState(true);
+
+  React.useEffect(() => {
+    let interval = null;
+    if (start) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [start]);
 
   return (
     <div className="app-container shadow-shorter">
@@ -132,6 +179,15 @@ export default function App() {
 
         <div className="stats-container">
           <p>Rolls: {rolls}</p>
+          <p>
+            {/* divide the time by 10 because that is the value of a millisecond
+            then modulo 1000. Now we will append this to a zero so that when the time starts
+            there will be a zero already instead of just one digit. 
+            Finally we will slice and pass in a parameter of -2 so that when the 
+            number becomes two digits the zero will be removed */}
+            Timer: {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
+            {("0" + ((time / 10) % 1000)).slice(-2)}
+          </p>
         </div>
 
         <div className="dice-container">{diceElements}</div>
@@ -139,12 +195,8 @@ export default function App() {
         <button className="roll-dice" onClick={rollDice}>
           {tenzies ? "New game" : "Roll"}
         </button>
-        <div className="stats-container">
-          <div className="rolls-best">
-            <p>Best rolls</p>
-            <p>{bestRolls}</p>
-          </div>
-        </div>
+
+        <Scoreboard bestRolls={bestRolls} bestTime={bestTime} />
       </main>
       <Footer />
     </div>

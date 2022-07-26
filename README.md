@@ -51,8 +51,8 @@ I'd like to:
 - ~~Put real dots on the dice~~
 - ~~Track the number of rolls~~
 - ~~Save user's best rolls to localStorage~~
-- Track the time it took to win
-- Save user's best time to localStorage
+- ~~Track the time it took to win~~
+- ~~Save user's best time to localStorage~~
 
 ### Useful resources
 
@@ -64,6 +64,7 @@ I'd like to:
 - [Confetti @Github](https://github.com/alampros/react-confetti)
 - [FreeCodeCamp](https://www.freecodecamp.org/news/react-background-image-tutorial-how-to-set-backgroundimage-with-inline-css-style/) - How to Set a Background Image in React Using the Relative URL Method
 - [Fossheim](https://fossheim.io/writing/posts/css-text-gradient) - Text Gradient
+- [Ray Alva](https://medium.com/codex/react-stopwatch-10bf9813d0ec) - React Stopwatch
 
 ## Author
 
@@ -72,4 +73,3 @@ I'd like to:
 ## Credits
 
 - Dice icons created by rizal2109 - [Flaticon](https://www.flaticon.com/free-icons/dice)
-- [Gifer](https://gifer.com/en/BTBq)
